@@ -5,7 +5,7 @@ import java.util.GregorianCalendar;
 
 class Thread2K extends Thread {
 
-	private static int N    = 2000;		//	by defalut
+	private static int N    = 2;		//	by defalut
 	private static int time = 10;		//	s
 
 	private int Id;
@@ -17,7 +17,7 @@ class Thread2K extends Thread {
 	@Override
 	public void run() {
 		try {
-			Thread.sleep(1000*time);
+			Thread.sleep(time);
 		} catch (@SuppressWarnings("unused") InterruptedException e) {
 		//	e.printStackTrace();
 		}
@@ -32,9 +32,11 @@ class Thread2K extends Thread {
 
 		if (args.length > 0) N    = Integer.parseInt(args[0]);
 		if (args.length > 1) time = Integer.parseInt(args[1]);
-		System.out.println("Threads' Count: " + N    + " Th");
-		System.out.println("Threads' TTL  : " + time + " s");
-		System.out.println(args.length + "	" + N + " " + time);
+		System.out.println("Threads' Count: " + N    + "K");
+		System.out.println("Threads' TTL  : " + time + "s");
+		N    *= 1000;
+		time *= 1000;
+	//	System.out.println(String.format("%1$,d  %2$,d", N, time));
 		System.out.println();
 
 		System.out.println("Threads' creation Start time: " + new GregorianCalendar().getTime());
@@ -46,7 +48,5 @@ class Thread2K extends Thread {
 	}
 
 }
-//	Thread create Start time:
-//	Thread create Stop  time:
 //	Thread running Stop
 //	Last thread Stop time   :
