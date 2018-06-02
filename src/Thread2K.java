@@ -21,7 +21,7 @@ class Thread2K extends Thread {
 		} catch (@SuppressWarnings("unused") InterruptedException e) {
 		//	e.printStackTrace();
 		}
-		if (Id > N - 2)
+		if (Id == 0 | Id > N - 2)
 			System.out.println(new GregorianCalendar().getTime());
 	}
 
@@ -34,10 +34,15 @@ class Thread2K extends Thread {
 		System.out.println();
 
 		System.out.println(new GregorianCalendar().getTime());
-		for (int i = 0; i < N; i++)
+		for (int i = 0; i < N; i++) {
 			new Thread2K(i).start();
+		}
 		System.out.println(new GregorianCalendar().getTime());
 		System.err.println("Fin.");
 	}
 
 }
+//	Thread create Start time:
+//	Thread create Stop  time:
+//	Thread running Stop
+//	Last thread Stop time   :
