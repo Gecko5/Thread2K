@@ -5,8 +5,8 @@ import java.util.GregorianCalendar;
 
 class Thread2K extends Thread {
 
-	private static int N    = 2000;
-	private static int time = 10000;
+	private static int N    = 2000;		//	by defalut
+	private static int time = 10;		//	s
 
 	private int Id;
 
@@ -17,27 +17,31 @@ class Thread2K extends Thread {
 	@Override
 	public void run() {
 		try {
-			Thread.sleep(time);
+			Thread.sleep(1000*time);
 		} catch (@SuppressWarnings("unused") InterruptedException e) {
 		//	e.printStackTrace();
 		}
-		if (Id == 0 | Id > N - 2)
-			System.out.println(new GregorianCalendar().getTime());
+		if (Id == 0 || Id == N - 1) {
+			System.out.println("Thread   " + String.format("%1$,7d", Id) + " finished at: " + new GregorianCalendar().getTime());
+		}
 	}
 
 	public static void main(String[] args) {
-		System.out.println("Program do tworzenia N w¹tków");
+		System.out.println("Program do masowego tworzenia w¹tków");
 		System.out.println("use: Thread2K [count] [TTL]\n");
 
-		System.out.println("N    = " + N    + " Th");
-		System.out.println("time = " + time + " ms");
+		if (args.length > 0) N    = Integer.parseInt(args[0]);
+		if (args.length > 1) time = Integer.parseInt(args[1]);
+		System.out.println("Threads' Count: " + N    + " Th");
+		System.out.println("Threads' TTL  : " + time + " s");
+		System.out.println(args.length + "	" + N + " " + time);
 		System.out.println();
 
-		System.out.println(new GregorianCalendar().getTime());
+		System.out.println("Threads' creation Start time: " + new GregorianCalendar().getTime());
 		for (int i = 0; i < N; i++) {
 			new Thread2K(i).start();
 		}
-		System.out.println(new GregorianCalendar().getTime());
+		System.out.println("Threads' creation Stop  time: " + new GregorianCalendar().getTime());
 		System.err.println("Fin.");
 	}
 
