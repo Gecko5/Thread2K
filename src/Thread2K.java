@@ -1,9 +1,11 @@
 //	Testowanie 2K i 120K w¹tków
 //	29.05.2018r.
 
+import java.util.GregorianCalendar;
+
 class Thread2K extends Thread {
 
-	private static int MAX  = 2000;
+	private static int N    = 2000;
 	private static int time = 10000;
 
 	private int Id;
@@ -19,16 +21,22 @@ class Thread2K extends Thread {
 		} catch (@SuppressWarnings("unused") InterruptedException e) {
 		//	e.printStackTrace();
 		}
-		if (Id > MAX - 2) System.out.print(".");
+		if (Id > N - 2)
+			System.out.println(new GregorianCalendar().getTime());
 	}
 
 	public static void main(String[] args) {
-		System.out.println("MAX  = " + MAX);
-		System.out.println("time = " + time);
+		System.out.println("Program do tworzenia N w¹tków");
+		System.out.println("use: Thread2K [count] [TTL]\n");
 
-		for (int i = 0; i < MAX; i++)
+		System.out.println("N    = " + N    + " Th");
+		System.out.println("time = " + time + " ms");
+		System.out.println();
+
+		System.out.println(new GregorianCalendar().getTime());
+		for (int i = 0; i < N; i++)
 			new Thread2K(i).start();
-
+		System.out.println(new GregorianCalendar().getTime());
 		System.err.println("Fin.");
 	}
 
