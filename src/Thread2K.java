@@ -3,7 +3,7 @@
 
 class Thread2K extends Thread {
 
-	private static int N = 2000;
+	private static int MAX  = 2000;
 	private static int time = 10000;
 
 	private int Id;
@@ -19,14 +19,14 @@ class Thread2K extends Thread {
 		} catch (@SuppressWarnings("unused") InterruptedException e) {
 		//	e.printStackTrace();
 		}
-		if (Id > N - 2) System.out.print(".");
+		if (Id > MAX - 2) System.out.print(".");
 	}
 
 	public static void main(String[] args) {
-		System.out.println("N    = " + N);
+		System.out.println("MAX  = " + MAX);
 		System.out.println("time = " + time);
 
-		for (int i = 0; i < N; i++)
+		for (int i = 0; i < MAX; i++)
 			new Thread2K(i).start();
 
 		System.err.println("Fin.");
